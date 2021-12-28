@@ -1,0 +1,156 @@
+questionsArray = [
+  {
+    question: "Why do JavaScript and Java have similar names?",
+    answer: "JavaScript's syntax is loosely based on Java's",
+    options: [
+      "JavaScript is a stripped-down version of Java",
+      "JavaScript's syntax is loosely based on Java's",
+      "They both originated on the island of Java",
+      "None of the above",
+    ],
+  },
+  {
+    question:
+      "When a user views a page containing a JavaScript program, which machine actually executes the script?",
+    answer: "The User's machine running a Web browser",
+    options: [
+      "The User's machine running a Web browser",
+      "The Web server",
+      "A central machine deep within Netscape's corporate offices",
+      "None of the above",
+    ],
+  },
+  {
+    question: "______ JavaScript is also called client-side JavaScript.",
+    answer: "Navigator",
+    options: ["Microsoft", "Navigator", "LiveWire", "Native"],
+  },
+  {
+    question: "__________ JavaScript is also called server-side JavaScript.",
+    answer: "LiveWire",
+    options: ["Microsoft", "Navigator", "LiveWire", "Native"],
+  },
+  {
+    question: "What are variables used for in JavaScript Programs?",
+    answer: "Storing numbers, dates, or other values",
+    options: [
+      "Storing numbers, dates, or other values",
+      "Varying randomly",
+      "Causing high-school algebra flashbacks",
+      "None of the above",
+    ],
+  },
+  {
+    question:
+      "_____ JavaScript statements embedded in an HTML page can respond to user events such as mouse-clicks, form input, and page navigation.",
+    answer: "Client-side",
+    options: ["Client-side", "Server-side", "Local", "Native"],
+  },
+  {
+    question:
+      "Which of the following can't be done with client-side JavaScript?",
+    answer: "Storing the form's contents to a database file on the server",
+    options: [
+      "Validating a form",
+      "Sending a form's contents by email",
+      "Storing the form's contents to a database file on the server",
+      "None of the above",
+    ],
+  },
+  {
+    question:
+      "Which of the following are capabilities of functions in JavaScript?",
+    answer: "Accept parameters",
+    options: [
+      "Return a value",
+      "Accept parameters and Return a value",
+      "Accept parameters",
+      "None of the above",
+    ],
+  },
+  {
+    question: "Which of the following is not a valid JavaScript variable name?",
+    answer: "2names",
+    options: [
+      "2names",
+      "_first_and_last_names",
+      "FirstAndLast",
+      "None of the above",
+    ],
+  },
+  {
+    question:
+      "Which of the following attribute can hold the JavaScript version?",
+    answer: "LANGUAGE",
+    options: ["LANGUAGE", "SCRIPT", "VERSION", "None of the above"],
+  },
+];
+
+alert(
+  "NOTE : You have 10 minutes to complete the quiz. You time starts now. Good Luck !"
+);
+
+function showQues(e) {
+  var ques = document.getElementById("ques");
+  ques.innerHTML = "Q" + (e + 1) + ")" + questionsArray[e].question;
+
+  var options = document.getElementsByClassName("label");
+
+  for (var i = 0; i < options.length; i++) {
+    options[i].innerHTML = questionsArray[e].options[i];
+  }
+}
+
+count = 0;
+score = 0;
+
+function calc() {
+  var radios = document.getElementsByClassName("radiobtn");
+  var option = document.getElementsByClassName("label");
+  for (var i = 0; i < radios.length; i++) {
+    if (radios[i].checked == true) {
+      if (option[i].innerHTML == questionsArray[count].answer) {
+        score++;
+      }
+    }
+  }
+}
+
+function nextQues() {
+  calc();
+  var radios = document.getElementsByClassName("radiobtn");
+  if (count < questionsArray.length - 1) {
+    for (var i = 0; i < radios.length; i++) {
+      if (radios[i].checked == true) {
+        count++;
+        showQues(count);
+        radios[i].checked = false;
+      }
+    }
+  } else {
+    alert("your score is ==>" + score);
+    var main = document.getElementsByClassName("main");
+    main[0].innerHTML = "";
+  }
+}
+
+let time = 6000 / 10;
+let refreshIntervalId = setInterval(updateCountdown, 1000);
+
+function updateCountdown() {
+  var minutes = Math.floor(time / 60);
+  let seconds = time % 60;
+
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+  var contdownEl = document.getElementById("f1");
+  contdownEl.innerHTML = `${minutes}:${seconds}`;
+
+  time--;
+
+  if (time < 0) {
+    clearInterval(refreshIntervalId);
+    var clear = document.getElementById("quiz");
+    clear.innerHTML = "Thank You";
+    alert("Time Up");
+  }
+}

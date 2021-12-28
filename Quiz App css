@@ -1,0 +1,57 @@
+body {
+  font-family: cursive;
+  background: linear-gradient(90deg, rgb(224, 96, 128), rgb(91, 35, 221));
+}
+
+#heading {
+  text-align: center;
+  color: white;
+  font-size: 45px;
+  margin: 40px auto;
+}
+
+#f1 {
+  color: white;
+  font-size: 50px;
+  margin: 0;
+  float: right;
+  /* position: relative;
+  bottom: 100px; */
+}
+.main {
+  width: 100%;
+  margin: 20px auto;
+  /* text-align: center; */
+  /* text-align: center; */
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+#ques {
+  color: white;
+  font-size: 22px;
+}
+
+.label {
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+}
+#nextbtn {
+  height: 50px;
+  width: 150px;
+  margin: 0px auto;
+  border-radius: 20px;
+  font-size: 20px;
+  border: 1px solid black;
+  background: linear-gradient(100deg, rgb(226, 94, 94), rgb(80, 55, 221));
+  color: white;
+  font-family: cursive;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.radiobtn {
+  height: 20px;
+  width: 20px;
+}

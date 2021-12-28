@@ -1,0 +1,66 @@
+firebase.database().ref("task").on("child_added", function (data) {
+    // making a task
+    var input = document.getElementById("todoitem");
+    var list = document.createElement("li");
+    var litext = document.createTextNode(data.val().value);
+    list.setAttribute("class", "task");
+    list.appendChild(litext);
+    var tasklist = document.getElementById("tasklist");
+    tasklist.appendChild(list);
+
+    // making the edit task button
+    var editBtn = document.createElement("button");
+    var editBtn_text = document.createTextNode("Edit Task");
+    editBtn.appendChild(editBtn_text);
+    editBtn.setAttribute("class", "btn");
+    editBtn.setAttribute("onclick", "editItem(this)");
+    editBtn.setAttribute("id", data.val().key)
+    list.appendChild(editBtn);
+
+    // making the delete task button
+    var delBtn = document.createElement("button");
+    var delBtn_text = document.createTextNode("Delete Task");
+    delBtn.appendChild(delBtn_text);
+    delBtn.setAttribute("class", "btn");
+    delBtn.setAttribute("onclick", "deleteItem(this)");
+    delBtn.setAttribute("id", data.val().key)
+    list.appendChild(delBtn);
+    input.value = "";
+  });
+// ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< //
+function additem() {
+  var task = document.getElementById("todoitem");
+  var key = firebase.database().ref("task").push().key;
+  var todo = {
+    value: task.value,
+    key: key,
+  };
+  firebase.database().ref("task").child(key).set(todo);
+}
+// ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< //
+
+function deleteItem(e) {
+  firebase.database().ref('task').child(e.id).remove()
+  e.parentNode.remove();
+}
+// ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< //
+
+function editItem(e) {
+
+  var val = e.parentNode.firstChild.nodeValue;
+  var editValue = prompt("Enter new task", val);
+  e.parentNode.firstChild.nodeValue = editValue;
+
+  var editTask = {
+      value : editValue,
+      key : e.id 
+  }
+   firebase.database().ref('task').child(e.id).set(editTask)
+  
+}
+// ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< ><><><>><><><>< //
+
+function deleteAll() {
+  var tasklist = document.getElementById("tasklist");
+  tasklist.innerHTML = "";
+}

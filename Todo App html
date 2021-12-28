@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js" ;></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js" ;></script>
+    <script> var firebaseConfig = {
+            apiKey: "AIzaSyDA2xfzi7BQRbKi9G2OA0RQNW21n6tBr0U",
+            authDomain: "todo-app-f70f5.firebaseapp.com",
+            projectId: "todo-app-f70f5",
+            storageBucket: "todo-app-f70f5.appspot.com",
+            messagingSenderId: "971436941843",
+            appId: "1:971436941843:web:c714d6b3b3decd4f9915e6",
+        };
+    </script>
+    <script> var app = firebase.initializeApp(firebaseConfig);</script>
+
+
+</head>
+
+<body>
+
+
+    <h1 style="text-align: center; color: #fff; font-family : cursive;">To Do Task List</h1>
+    <div class="main">
+        <div>
+            <input type="text" id="todoitem" class="input" placeholder="Enter a task here...">
+            <button class="btnadd" onclick="additem()">Add Item</button>
+            <button class="btndelall" onclick="deleteAll()">Delete All</button>
+        </div>
+
+        <div>
+            <ul id="tasklist">
+
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
